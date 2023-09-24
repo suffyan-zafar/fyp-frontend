@@ -34,7 +34,7 @@ const Login = ({navigation}) => {
  
     }
     else{
-      axios.get(`http://192.168.0.104:3000/api/auth/login/${email}/${pass}`).then((res)=>{
+      axios.get(`http://192.168.0.106:3000/api/auth/login/${email}/${pass}`).then((res)=>{
         // console.log(res,"resss");
         console.log(res.data[0].msg, "res");
         if(res.data[0].msg==1){
@@ -45,8 +45,10 @@ const Login = ({navigation}) => {
         else{
           Alert.alert(`${res.data[0].msg}`);
                 console.log(res.data[0].nm,"name from databse");
+                console.log(res.data[0],"name from databse");
                 const name=res.data[0].nm;
-                signIn();
+                const user_id=res.data[0].id.toString();
+                signIn(user_id);
                 navigation.navigate("DashBoard", {myName: `${name}`});
       
               setEmail("");

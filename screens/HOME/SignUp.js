@@ -24,10 +24,6 @@ const SignUp = ({navigation}) => {
   const [Pass, setPass]=useState("");
   const [cnfrmPass, setcnfrmPass]=useState("");
   const handleRegisterBtn=  ()=>{
-    console.log(name, "N");
-    console.log(email, "E");
-    console.log(Pass, "P");
-    console.log(cnfrmPass, "CP");
    
     if(name=="" || email=="" || Pass=="" || cnfrmPass==""){
       Alert.alert("Enter Complete Fields!!")
@@ -67,7 +63,7 @@ const SignUp = ({navigation}) => {
       //       console.log(err,"errrr");
       // })
 
-      axios.get(`http://192.168.0.104:3000/api/auth/register/${name}/${email}/${Pass}`).then((res)=>{
+      axios.get(`http://192.168.0.106:3000/api/auth/register/${name}/${email}/${Pass}`).then((res)=>{
             console.log(res.data[0].msg, "res");
             if(res.data[0].msg==1){
               Alert.alert("Email Already Exist!!");

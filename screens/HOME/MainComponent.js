@@ -9,26 +9,21 @@ import Login from './Login';
 import SignUp from './SignUp';
 import ForgetPassword from './ForgetPassword';
 import DashBoard from './DashBoard';
-// import HOME from './screens/HOME/HOME';
-// import Login from './screens/HOME/Login';
-// import SignUp from './screens/HOME/SignUp';
-// import ForgetPassword from './screens/HOME/ForgetPassword';
-// import DashBoard from './screens/HOME/DashBoard';
+
+import DashBoardHome from './DashBoardHome';
 
 
 const MainComponent=()=> {
   const Stack = createNativeStackNavigator();
 
   return (
-
-    
-        
         <Stack.Navigator  initialRouteName="HOME"   screenOptions={{ headerShown: false,}}> 
         <Stack.Screen name="HOME"  component={HOME}/> 
         <Stack.Screen name="Login"  component={Login}/> 
         <Stack.Screen name="SignUp"  component={SignUp}/> 
         <Stack.Screen name="ForgetPassword"  component={ForgetPassword}/> 
         <Stack.Screen name="DashBoard"  component={DashBoard}/> 
+        <Stack.Screen name="DashBoardHome"  component={DashBoardHome}/> 
           </Stack.Navigator>      
         
   

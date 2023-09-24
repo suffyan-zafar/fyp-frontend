@@ -17,6 +17,7 @@ import AsynStorage from '@react-native-async-storage/async-storage';
 export default function App() {
   const [isLoading, setIsLoading]=new useState(true)
   const [userToken, setUserToken]=new useState(null);
+  const [info,setInfo]=new useState(null);
   const authContext=React.useMemo(()=> ({
     signUp : async() =>{
       setUserToken('Suffyan');
@@ -27,28 +28,28 @@ export default function App() {
       }
       setIsLoading(false);
     },
-    signIn : () => {
-      console.log("set token");
-      setUserToken('Suffyan');
+    signIn : async(user_id) => {
+      console.log(user_id, "name in signIN");
+      setUserToken('Suffyan123');
       setIsLoading(false);
+      try{
+        await AsynStorage.setItem('userToken',user_id );
+      } catch(e){
+          console.log(e);
+      }
     },
-    signOut : () => {
+    signOut : async() => {
       console.log("signout");
+      try{
+        await AsynStorage.removeItem('userToken');
+      } catch(e){
+          console.log(e);
+      }
       setUserToken(null);
       setIsLoading(false);
     },
    
   }),[]);
-
-  useEffect(()=>{
-    let token="";
-    try{
-     token=  AsynStorage.getItem('userToken');
-    } catch(e){
-        console.log(e);
-    }
-    console.log(token,  "tokn");
-  },[]);
   // if(isLoading){
   //   return(
   //     <View>
@@ -63,8 +64,6 @@ export default function App() {
     <NavigationContainer >
     {console.log(userToken," in main token")}
       {userToken!=null ?<DashBoad/> :<MainComponent /> }
-     
-   
       </NavigationContainer>
       </AuthContext.Provider>
     //       <NavigationContainer >
